@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using Website.Infrastructure.Contexts;
 using Website.Models;
 
 namespace Website.Controllers
@@ -7,14 +9,18 @@ namespace Website.Controllers
     public class PostController : Controller
     {
         private readonly ILogger<PostController> _logger;
+        private readonly WebContext _WebContext;
 
-        public PostController(ILogger<PostController> logger)
+        public PostController(ILogger<PostController> logger, WebContext WebContext)
         {
             _logger = logger;
+            _WebContext = WebContext;
+
         }
 
         public IActionResult Index()
         {
+            var tem = _WebContext.Tests.ToList();
             return View();
         }
 
