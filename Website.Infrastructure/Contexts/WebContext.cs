@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Website.Domain.Entities;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Website.Infrastructure.Contexts
 {
@@ -13,16 +14,19 @@ namespace Website.Infrastructure.Contexts
     {
         protected readonly IConfiguration Configuration;
 
-        public WebContext(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public WebContext(DbContextOptions<WebContext> options) : base(options) { 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            // connect to postgres with connection string from app settings
-            options.UseNpgsql(Configuration.GetConnectionString("WebApiDatabase"));
         }
+        //public WebContext(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    // connect to postgres with connection string from app settings
+        //    options.UseNpgsql(Configuration.GetConnectionString("WebApiDatabase"));
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,7 +44,13 @@ namespace Website.Infrastructure.Contexts
             //modelBuilder.HasSequence("item_id_seq", "account");
         }
 
-        public DbSet<Test> Tests { get; set; }
-        public DbSet<Test> Test2 { get; set; }
+        #region Tables
+        public DbSet<Articles> Articles { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Images> Images { get; set; }
+        public DbSet<Tags> Tags { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Videos> Videos { get; set; }
+        #endregion
     }
 }

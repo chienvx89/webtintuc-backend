@@ -20,7 +20,6 @@ namespace Website.Controllers
 
         public IActionResult Index()
         {
-            var tem = _WebContext.Tests.ToList();
             return View();
         }
 
