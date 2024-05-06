@@ -30,8 +30,11 @@ static void AppRun(WebApplicationBuilder builder)
 
         app.UseHsts();
     }
+    //else {
+    //    app.UseMiddleware<ExceptionMiddleware>();
+    //}
 
-    app.UseMiddleware<ExceptionMiddleware>();
+    
 
     app.UseHttpsRedirection();
     app.UseStaticFiles();
@@ -64,8 +67,7 @@ static WebApplicationBuilder ConfigurationServices(string[] args)
     builder.Services.ConfigDI();
     builder.Services.ConfigAutoMapper();
     builder.Services.AddApplication();
-
-    // Add services to the container.
+    builder.Services.AddDistributedMemoryCache();    // Add services to the container.
     builder.Services.AddControllersWithViews();
     return builder;
 }
