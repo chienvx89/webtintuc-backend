@@ -12,8 +12,8 @@ using Website.Infrastructure.Contexts;
 namespace Website.Infrastructure.Migrations.Web
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20240409140921_001")]
-    partial class _001
+    [Migration("20240506072632_InitDatabase")]
+    partial class InitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace Website.Infrastructure.Migrations.Web
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Website.Domain.Entities.Articles", b =>
+            modelBuilder.Entity("Website.Domain.Entities.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,21 +52,20 @@ namespace Website.Infrastructure.Migrations.Web
                         .HasColumnName("CreateBy");
 
                     b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("PublishDate")
+                    b.Property<DateTime?>("PublishDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdateDate");
 
-                    b.Property<int>("UpdatedBy")
+                    b.Property<int?>("UpdatedBy")
                         .HasColumnType("integer")
                         .HasColumnName("UpdateBy");
 
@@ -75,7 +74,7 @@ namespace Website.Infrastructure.Migrations.Web
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("Website.Domain.Entities.Categories", b =>
+            modelBuilder.Entity("Website.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,27 +96,29 @@ namespace Website.Infrastructure.Migrations.Web
                         .HasColumnType("text");
 
                     b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdateDate");
 
-                    b.Property<int>("UpdatedBy")
+                    b.Property<int?>("UpdatedBy")
                         .HasColumnType("integer")
                         .HasColumnName("UpdateBy");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Guid")
+                        .IsUnique();
+
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Website.Domain.Entities.Images", b =>
+            modelBuilder.Entity("Website.Domain.Entities.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,14 +148,13 @@ namespace Website.Infrastructure.Migrations.Web
                         .HasColumnType("text");
 
                     b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdateDate");
 
-                    b.Property<int>("UpdatedBy")
+                    b.Property<int?>("UpdatedBy")
                         .HasColumnType("integer")
                         .HasColumnName("UpdateBy");
 
@@ -163,7 +163,7 @@ namespace Website.Infrastructure.Migrations.Web
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("Website.Domain.Entities.Tags", b =>
+            modelBuilder.Entity("Website.Domain.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -173,7 +173,6 @@ namespace Website.Infrastructure.Migrations.Web
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ArticleID")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreateDate")
@@ -185,22 +184,20 @@ namespace Website.Infrastructure.Migrations.Web
                         .HasColumnName("CreateBy");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdateDate");
 
-                    b.Property<int>("UpdatedBy")
+                    b.Property<int?>("UpdatedBy")
                         .HasColumnType("integer")
                         .HasColumnName("UpdateBy");
 
@@ -209,7 +206,7 @@ namespace Website.Infrastructure.Migrations.Web
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Website.Domain.Entities.Users", b =>
+            modelBuilder.Entity("Website.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,7 +228,6 @@ namespace Website.Infrastructure.Migrations.Web
                         .HasColumnType("text");
 
                     b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Password")
@@ -241,11 +237,11 @@ namespace Website.Infrastructure.Migrations.Web
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdateDate");
 
-                    b.Property<int>("UpdatedBy")
+                    b.Property<int?>("UpdatedBy")
                         .HasColumnType("integer")
                         .HasColumnName("UpdateBy");
 
@@ -258,7 +254,7 @@ namespace Website.Infrastructure.Migrations.Web
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Website.Domain.Entities.Videos", b =>
+            modelBuilder.Entity("Website.Domain.Entities.Video", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -288,14 +284,13 @@ namespace Website.Infrastructure.Migrations.Web
                         .HasColumnType("text");
 
                     b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdateDate");
 
-                    b.Property<int>("UpdatedBy")
+                    b.Property<int?>("UpdatedBy")
                         .HasColumnType("integer")
                         .HasColumnName("UpdateBy");
 

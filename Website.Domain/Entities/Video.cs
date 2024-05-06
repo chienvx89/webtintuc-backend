@@ -7,7 +7,7 @@ using Website.Domain.Abstract;
 
 namespace Website.Domain.Entities
 {
-    public class Images: Entity
+    public class Video: Entity
     {
         public string ArticleID { get; set; }
         public string FilePath { get; set; }

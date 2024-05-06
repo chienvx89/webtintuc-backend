@@ -8,11 +8,11 @@ using Website.Domain.Abstract;
 
 namespace Website.Domain.Entities
 {
-    public class Articles : Entity
+    public class Article : Entity
     {
-        public string Title { get; set; } 
-        public string Content { get; set; } 
-        public DateTime PublishDate { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
+        public DateTime? PublishDate { get; set; }
         public int AuthorID { get; set; }
         public int CategoryID { get; set; }
     }

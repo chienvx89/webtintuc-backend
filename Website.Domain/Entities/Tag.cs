@@ -7,10 +7,10 @@ using Website.Domain.Abstract;
 
 namespace Website.Domain.Entities
 {
-    public class Videos: Entity
+    public class Tag:Entity
     {
-        public string ArticleID { get; set; }
-        public string FilePath { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; }
+        public string? ArticleID { get; set; }
+        public string? Description { get; set; }
     }
 }

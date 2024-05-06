@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
+
 namespace Website.Domain.Abstract
 {
     public abstract class Entity
@@ -16,20 +17,19 @@ namespace Website.Domain.Abstract
         [Column("Id")]
         public virtual int Id { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Guid { get; set; }
+        public virtual Guid Guid { get; set; }
 
         [Column("CreateDate")]
-        public DateTime CreateDate { get; set; } = DateTime.Now;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
         [Column("CreateBy")]
         public int CreatedBy { get; set; }
 
         [Column("UpdateDate")]
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; } 
 
         [Column("UpdateBy")]
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
     }
 

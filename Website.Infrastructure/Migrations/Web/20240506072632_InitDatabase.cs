@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Website.Infrastructure.Migrations.Web
 {
-    public partial class _001 : Migration
+    public partial class InitDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,14 +18,14 @@ namespace Website.Infrastructure.Migrations.Web
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
-                    PublishDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    PublishDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     AuthorID = table.Column<int>(type: "integer", nullable: false),
                     CategoryID = table.Column<int>(type: "integer", nullable: false),
                     Guid = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreateBy = table.Column<int>(type: "integer", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateBy = table.Column<int>(type: "integer", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdateBy = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,8 +43,8 @@ namespace Website.Infrastructure.Migrations.Web
                     Guid = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreateBy = table.Column<int>(type: "integer", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateBy = table.Column<int>(type: "integer", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdateBy = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,8 +63,8 @@ namespace Website.Infrastructure.Migrations.Web
                     Guid = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreateBy = table.Column<int>(type: "integer", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateBy = table.Column<int>(type: "integer", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdateBy = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,13 +78,13 @@ namespace Website.Infrastructure.Migrations.Web
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    ArticleID = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    ArticleID = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     Guid = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreateBy = table.Column<int>(type: "integer", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateBy = table.Column<int>(type: "integer", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdateBy = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,8 +104,8 @@ namespace Website.Infrastructure.Migrations.Web
                     Guid = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreateBy = table.Column<int>(type: "integer", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateBy = table.Column<int>(type: "integer", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdateBy = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -124,13 +124,19 @@ namespace Website.Infrastructure.Migrations.Web
                     Guid = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreateBy = table.Column<int>(type: "integer", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateBy = table.Column<int>(type: "integer", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdateBy = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Videos", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_Guid",
+                table: "Categories",
+                column: "Guid",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

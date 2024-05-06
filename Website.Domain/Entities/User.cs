@@ -7,7 +7,7 @@ using Website.Domain.Abstract;
 
 namespace Website.Domain.Entities
 {
-    public class Users : Entity
+    public class User : Entity
     {
         public string Username{ get; set; }
         public string Password{ get; set; }

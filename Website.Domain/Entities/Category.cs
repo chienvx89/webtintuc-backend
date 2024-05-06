@@ -7,10 +7,15 @@ using Website.Domain.Abstract;
 
 namespace Website.Domain.Entities
 {
-    public class Tags:Entity
+
+    /// <summary>
+    ///CategoryID: Định danh duy nhất cho mỗi chủ đề/thể loại.
+    ///Name: Tên của chủ đề/thể loại.
+    ///Description: Mô tả về chủ đề/thể loại.
+    /// </summary>
+    public class Category : Entity
     {
         public string Name { get; set; }
-        public string ArticleID { get; set; }
         public string Description { get; set; }
     }
 }

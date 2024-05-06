@@ -16,7 +16,7 @@ namespace Website.Domain.Entities
     ///Description: Mô tả về cài đặt, giúp người quản trị hiểu cài đặt này ảnh hưởng như thế nào đến website 
     /// </summary>
     
-    public class Settings : Entity
+    public class Setting : Entity
     {
         public string Key { get; set; }
         public string Value { get; set; }

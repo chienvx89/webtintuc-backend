@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Microsoft.Extensions.Configuration;
 using Website.Domain.Entities;
 using static System.Net.Mime.MediaTypeNames;
@@ -30,27 +31,22 @@ namespace Website.Infrastructure.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Item>(entity =>
-            //{
-            //    entity.ToTable("item", "account");
-            //    entity.Property(e => e.Id)
-            //                        .HasColumnName("id")
-            //                        .HasDefaultValueSql("nextval('account.item_id_seq'::regclass)");
-            //    entity.Property(e => e.Description).HasColumnName("description");
-            //    entity.Property(e => e.Name)
-            //                        .IsRequired()
-            //                        .HasColumnName("name");
-            //});
-            //modelBuilder.HasSequence("item_id_seq", "account");
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.Property(b => b.Guid).Metadata.SetValueGeneratorFactory((_, _) => new SequentialGuidValueGenerator());
+                entity.HasIndex(b => b.Guid).IsUnique();
+            });
+
+
         }
 
         #region Tables
-        public DbSet<Articles> Articles { get; set; }
-        public DbSet<Categories> Categories { get; set; }
-        public DbSet<Images> Images { get; set; }
-        public DbSet<Tags> Tags { get; set; }
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Videos> Videos { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Domain.Entities.Image> Images { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Video> Videos { get; set; }
         #endregion
     }
 }
