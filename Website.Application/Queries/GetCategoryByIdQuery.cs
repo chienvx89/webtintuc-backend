@@ -29,20 +29,4 @@ namespace Website.Application.Queries
             return await _categoryRepository.GetByIdAsync(request.Id);
         }
     }
-
-    //public class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, Category>
-    //{
-    //    #region contructor
-    //    public GetCategoryByIdQueryHandler()
-    //    {
-
-    //    }
-    //    #endregion
-
-    //    public async Task<Category> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
-    //    {
-    //        var temp = request.Id;
-    //        return new Category();
-    //    }
-    //}
 }

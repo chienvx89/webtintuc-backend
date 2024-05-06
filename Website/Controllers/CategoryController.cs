@@ -1,30 +1,34 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Website.Application.Commands.CategoryCommands;
 using Website.Application.Queries;
 using Website.Domain.Entities;
 using Website.Infrastructure.IRepositories;
+using Website.Infrastructure.Logs;
 using Website.Models;
 
 namespace Website.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ILogger<CategoryController> _logger;
         private readonly IMediator _mediator;
-     
+        private readonly ILoggerManager _loggerManager;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ILogger<CategoryController> logger, IMediator mediator)
+
+        public CategoryController(IMediator mediator, ILoggerManager loggerManager,IMapper mapper)
         {
-            _logger = logger;
             _mediator = mediator;
+            _loggerManager = loggerManager;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-           
-            return View();
+            _loggerManager.LogDebug("ádfasdfhj");
+            return new EmptyResult();
         }
 
         public async Task<IActionResult> Get(int id)

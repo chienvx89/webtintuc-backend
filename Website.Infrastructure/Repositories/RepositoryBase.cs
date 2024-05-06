@@ -69,8 +69,7 @@ namespace Website.Infrastructure.Repositories
 
         public async Task<TEntity> GetByIdAsync(TPrimaryKey id)
         {
-            var entity = await GetAll().FirstOrDefaultAsync(CreateEqualityExpressionForId(id));
-            return entity;
+            return await GetAll().FirstOrDefaultAsync(CreateEqualityExpressionForId(id));
         }
 
         public TEntity Create(TEntity entity)
