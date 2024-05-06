@@ -5,7 +5,7 @@ using System.Reflection.Metadata;
 using Website.Application.Dtos;
 using Website.Domain.Entities;
 using Website.Infrastructure.IRepositories;
-using Website.Infrastructure.Logs;
+using Website.Infrastructure.LogServices;
 using Website.Infrastructure.Repositories;
 
 namespace Website.Extensions

@@ -6,7 +6,7 @@ using Website.Application.Commands.CategoryCommands;
 using Website.Application.Queries;
 using Website.Domain.Entities;
 using Website.Infrastructure.IRepositories;
-using Website.Infrastructure.Logs;
+using Website.Infrastructure.LogServices;
 using Website.Models;
 
 namespace Website.Controllers
