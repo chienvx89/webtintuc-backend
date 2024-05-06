@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Website.Infrastructure.Logs;
+using Website.Infrastructure.LogServices;
 
 namespace Website.Application.Middwares
 {

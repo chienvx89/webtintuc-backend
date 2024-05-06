@@ -9,7 +9,7 @@ using Website.Application;
 using Website.Infrastructure.IRepositories;
 using Website.Infrastructure.Repositories;
 using NLog;
-using Website.Infrastructure.Logs;
+using Website.Infrastructure.LogServices;
 using Website.Application.Middwares;
 using Website.Extensions;
 
